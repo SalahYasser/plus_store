@@ -52,4 +52,27 @@ abstract class AppTextStyle {
     height: 1.40,
   );
 
+  static const TextStyle semiBold24 = TextStyle(
+    color: Color(0xFF191919),
+    fontSize: 24,
+    fontFamily: 'General Sans',
+    fontWeight: FontWeight.w600,
+    height: 1.20,
+  );
+
+  static const TextStyle semiBold20 = TextStyle(
+    color: Color(0xFF191919),
+    fontSize: 20,
+    fontFamily: 'General Sans',
+    fontWeight: FontWeight.w600,
+    height: 1.20,
+  );
+
+  static const TextStyle medium20 = TextStyle(
+    color: Color(0xFF191919),
+    fontSize: 20,
+    fontFamily: 'General Sans',
+    fontWeight: FontWeight.w500,
+    height: 1.20,
+  );
 }

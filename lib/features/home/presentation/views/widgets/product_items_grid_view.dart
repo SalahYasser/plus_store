@@ -23,19 +23,7 @@ class ProductItemsGridView extends StatelessWidget {
       itemBuilder: (context, index) {
 
         final product = products[index];
-
-        return ProductItem(
-          imageUrl: product.imageUrl.isNotEmpty
-              ? product.imageUrl
-              : 'assets/images/buttel.webp',
-          title: product.title.isNotEmpty
-              ? product.title
-              : 'Default Title',
-          description: product.description.isNotEmpty
-              ? product.description
-              : 'Default Description',
-          price: product.price,
-        );
+        return ProductItem(product: product);
       },
     );
   }

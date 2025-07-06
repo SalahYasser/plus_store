@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../core/routes/routes.dart';
+import 'package:plus_store/features/home/data/models/product_model.dart';
+import 'package:plus_store/features/product_details/presentation/views/product_details_view.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({
-    super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.description,
-    required this.price,
-  });
+  const ProductItem({super.key, required this.product});
 
-  final String imageUrl;
-  final String title;
-  final String description;
-  final double price;
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, Routes.productDetailsView);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsView(product: product),
+          ),
+        );
       },
-
       child: Container(
         width: MediaQuery.of(context).size.width / 2.2,
         decoration: BoxDecoration(
@@ -34,12 +29,12 @@ class ProductItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              imageUrl.startsWith('http')
-                  ? Image.network(imageUrl, height: 200, fit: BoxFit.cover)
-                  : Image.asset(imageUrl, height: 200, fit: BoxFit.cover),
+              product.imageUrl.startsWith('http')
+                  ? Image.network(product.imageUrl, height: 200, fit: BoxFit.cover)
+                  : Image.asset(product.imageUrl, height: 200, fit: BoxFit.cover),
               const SizedBox(height: 16),
               Text(
-                title,
+                product.title,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
@@ -50,14 +45,14 @@ class ProductItem extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                description,
+                product.description,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(fontSize: 12, color: Colors.black),
               ),
               const SizedBox(height: 8),
               Text(
-                '\$${price.toStringAsFixed(2)}',
+                '\$${product.price.toStringAsFixed(2)}',
                 style: const TextStyle(
                   fontSize: 16,
                   color: Colors.green,
