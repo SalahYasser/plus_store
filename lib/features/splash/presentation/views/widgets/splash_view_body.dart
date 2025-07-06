@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plus_store/core/widgets/custom_loader.dart';
-import '../../../../on_boarding/presentation/views/on_boarding_view.dart';
+import 'package:plus_store/features/on_boarding/presentation/views/on_boarding_view.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -19,7 +19,26 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         MaterialPageRoute(builder: (context) => const OnBoardingView()),
       );
     });
+
+    // navigateNext();
   }
+
+  // Future<void> navigateNext() async {
+  //   await Future.delayed(const Duration(milliseconds: 900));
+  //
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
+  //
+  //   if (!mounted) return;
+  //
+  //   Navigator.of(context).pushReplacement(
+  //     MaterialPageRoute(
+  //       builder:
+  //           (context) =>
+  //               hasSeenOnboarding ? const LoginView() : const OnBoardingView(),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +55,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
           alignment: Alignment.bottomCenter,
           child: Padding(
             padding: const EdgeInsets.only(bottom: 100),
-
             child: CustomLoader(),
-
-            // child: Loader(),
           ),
         ),
       ],

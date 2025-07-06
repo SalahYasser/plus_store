@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'core/routes/on_generate_route.dart';
 import 'core/routes/routes.dart';
-import 'features/splash/presentation/views/splash_view.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const PlusStore());
 }
 
@@ -16,7 +16,6 @@ class PlusStore extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
       initialRoute: Routes.splashView,
-      home: const SplashView(),
     );
   }
 }
