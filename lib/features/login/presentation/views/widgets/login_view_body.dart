@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:plus_store/core/widgets/app_text_style.dart';
 import 'package:plus_store/core/widgets/custom_text_form_filed.dart';
 import 'package:plus_store/features/login/presentation/views/widgets/forgot_your_password.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/or_divider.dart';
+import '../../cubits/login_cubit/login_cubit.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     final TextEditingController userNameController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
     final loginFormKey = GlobalKey<FormState>();
+
+    final loginCubit = context.watch<LoginCubit>().state;
 
     return SingleChildScrollView(
       child: Padding(
@@ -38,13 +41,13 @@ class LoginViewBody extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               CustomTextFormFiled(
+                controller: userNameController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Username is required';
                   }
                   return null;
                 },
-                controller: userNameController,
                 labelText: 'Username',
                 hintText: 'Enter your email address',
               ),
@@ -65,27 +68,29 @@ class LoginViewBody extends StatelessWidget {
               const SizedBox(height: 32),
               Padding(
                 padding: const EdgeInsets.only(right: 4),
-                child: CustomButton(
-                  onPressed: () {
-                    if (loginFormKey.currentState!.validate()) {
+                child:
+                    loginCubit is LoginLoading
+                        ? Center(child: const CircularProgressIndicator())
+                        : CustomButton(
+                          onPressed: () {
+                            if (loginFormKey.currentState!.validate()) {
+                              final email = userNameController.text;
+                              final password = passwordController.text;
 
-                      final email = userNameController.text;
-                      final password = passwordController.text;
+                              context.read<LoginCubit>().login(
+                                    userName: email,
+                                    password: password,
+                              );
 
-                      // context.read<LoginCubit>().login(
-                      //       email: email,
-                      //       password: password,
-                      // );
-
-                      // print('email: ${emailController.text}');
-                      // print('password: ${passwordController.text}');
-                      // Navigator.pushNamed(context, '/home');
-                    }
-                  },
-                  text: 'Login',
-                  color: const Color(0xFF191919),
-                  textColor: Colors.white,
-                ),
+                              print('SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS');
+                              // print('password: ${passwordController.text}');
+                              // Navigator.pushNamed(context, '/home');
+                            }
+                          },
+                          text: 'Login',
+                          color: const Color(0xFF191919),
+                          textColor: Colors.white,
+                        ),
               ),
               const SizedBox(height: 32),
               const OrDivider(),

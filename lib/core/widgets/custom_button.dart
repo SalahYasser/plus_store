@@ -23,7 +23,7 @@ class CustomButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           backgroundColor: color,
@@ -32,17 +32,15 @@ class CustomButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon, color: iconColor),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                text,
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: 16,
-                  fontFamily: 'General Sans',
-                  fontWeight: FontWeight.w500,
-                  height: 1.40,
-                ),
+            const SizedBox(width: 8),
+            Text(
+              text,
+              style: TextStyle(
+                color: textColor,
+                fontSize: 16,
+                fontFamily: 'General Sans',
+                fontWeight: FontWeight.w500,
+                height: 1.40,
               ),
             ),
           ],
