@@ -13,6 +13,7 @@ class LoginViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final TextEditingController userNameController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
@@ -81,10 +82,6 @@ class LoginViewBody extends StatelessWidget {
                                     userName: email,
                                     password: password,
                               );
-
-                              print('SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS');
-                              // print('password: ${passwordController.text}');
-                              // Navigator.pushNamed(context, '/home');
                             }
                           },
                           text: 'Login',
