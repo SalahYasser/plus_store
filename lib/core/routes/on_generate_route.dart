@@ -3,6 +3,7 @@ import 'package:plus_store/core/routes/routes.dart';
 import 'package:plus_store/features/home/presentation/views/home_view.dart';
 import 'package:plus_store/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:plus_store/features/product_details/presentation/views/product_details_view.dart';
+import '../../features/home/data/models/product_model.dart';
 import '../../features/login/presentation/views/login_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
@@ -21,7 +22,11 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => const HomeView());
 
     case Routes.productDetailsView:
-      return MaterialPageRoute(builder: (_) => const ProductDetailsView());
+      return MaterialPageRoute(
+        builder:
+            (_) =>
+                ProductDetailsView(product: settings.arguments as ProductModel),
+      );
 
     default:
       return MaterialPageRoute(builder: (_) => const Scaffold());
