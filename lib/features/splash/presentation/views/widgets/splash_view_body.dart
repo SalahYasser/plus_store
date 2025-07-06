@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plus_store/core/widgets/custom_loader.dart';
-
-import '../../../../login/presentation/views/login_view.dart';
+import '../../../../on_boarding/presentation/views/on_boarding_view.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -17,7 +16,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
     Future.delayed(const Duration(milliseconds: 900), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const LoginView()),
+        MaterialPageRoute(builder: (context) => const OnBoardingView()),
       );
     });
   }
