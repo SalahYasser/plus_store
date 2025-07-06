@@ -8,4 +8,6 @@ abstract class Routes {
 
   static const String homeView = 'home_view';
 
+  static const String productDetailsView = 'product_details_view';
+
 }
