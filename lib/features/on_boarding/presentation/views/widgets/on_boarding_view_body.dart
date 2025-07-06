@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plus_store/core/routes/routes.dart';
+import 'package:plus_store/core/widgets/app_text_style.dart';
 
 class OnBoardingViewBody extends StatelessWidget {
   const OnBoardingViewBody({super.key});
@@ -27,14 +28,7 @@ class OnBoardingViewBody extends StatelessWidget {
             width: 324,
             child: Text(
               'Define yourself in your unique way.',
-              style: TextStyle(
-                color: Color(0xFF191919),
-                fontSize: 64,
-                fontFamily: 'General Sans',
-                fontWeight: FontWeight.w600,
-                height: 0.80,
-                letterSpacing: -3.20,
-              ),
+              style: AppTextStyle.semiBold64,
             ),
           ),
         ),
@@ -63,7 +57,10 @@ class OnBoardingViewBody extends StatelessWidget {
               height: 64,
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  // final prefs = await SharedPreferences.getInstance();
+                  // await prefs.setBool('hasSeenOnboarding', true);
+
                   Navigator.pushReplacementNamed(context, Routes.loginView);
                 },
                 style: ElevatedButton.styleFrom(
@@ -77,13 +74,7 @@ class OnBoardingViewBody extends StatelessWidget {
                   children: const [
                     Text(
                       'Get Started',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'General Sans',
-                        fontWeight: FontWeight.w500,
-                        height: 1.40,
-                      ),
+                      style: AppTextStyle.medium16,
                     ),
                     SizedBox(width: 12),
                     Icon(Icons.arrow_forward, color: Colors.white),
