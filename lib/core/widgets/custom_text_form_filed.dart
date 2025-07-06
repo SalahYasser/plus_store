@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomTextFiled extends StatelessWidget {
-  const CustomTextFiled({
+class CustomTextFormFiled extends StatelessWidget {
+  const CustomTextFormFiled({
     super.key,
     required this.labelText,
     required this.hintText,
@@ -12,7 +12,7 @@ class CustomTextFiled extends StatelessWidget {
   final String labelText;
   final String hintText;
 
-  // final TextEditingController emailController = TextEditingController();
+  // final TextEditingController userNameController = TextEditingController();
   // final TextEditingController passwordController = TextEditingController();
   final TextEditingController controller;
   final String? Function(String?)? validator;
@@ -20,7 +20,6 @@ class CustomTextFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      // controller: emailController,
       controller: controller,
       validator: validator,
       decoration: InputDecoration(

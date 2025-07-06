@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:plus_store/core/widgets/app_text_style.dart';
-import 'package:plus_store/core/widgets/custom_text_filed.dart';
+import 'package:plus_store/core/widgets/custom_text_form_filed.dart';
 import 'package:plus_store/features/login/presentation/views/widgets/forgot_your_password.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/or_divider.dart';
@@ -12,7 +12,7 @@ class LoginViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final TextEditingController emailController = TextEditingController();
+    final TextEditingController userNameController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
     final loginFormKey = GlobalKey<FormState>();
@@ -37,19 +37,19 @@ class LoginViewBody extends StatelessWidget {
                 style: AppTextStyle.regular16,
               ),
               const SizedBox(height: 32),
-              CustomTextFiled(
+              CustomTextFormFiled(
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Email is required';
+                    return 'Username is required';
                   }
                   return null;
                 },
-                controller: emailController,
-                labelText: 'Email',
+                controller: userNameController,
+                labelText: 'Username',
                 hintText: 'Enter your email address',
               ),
               const SizedBox(height: 32),
-              CustomTextFiled(
+              CustomTextFormFiled(
                 controller: passwordController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -69,7 +69,7 @@ class LoginViewBody extends StatelessWidget {
                   onPressed: () {
                     if (loginFormKey.currentState!.validate()) {
 
-                      final email = emailController.text;
+                      final email = userNameController.text;
                       final password = passwordController.text;
 
                       // context.read<LoginCubit>().login(
