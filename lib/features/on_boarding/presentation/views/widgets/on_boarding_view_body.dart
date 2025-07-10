@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plus_store/core/routes/routes.dart';
 import 'package:plus_store/core/widgets/app_text_style.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnBoardingViewBody extends StatelessWidget {
   const OnBoardingViewBody({super.key});
@@ -58,8 +59,9 @@ class OnBoardingViewBody extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () async {
-                  // final prefs = await SharedPreferences.getInstance();
-                  // await prefs.setBool('hasSeenOnboarding', true);
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('hasSeenOnboarding', true);
+                  await prefs.setString('lastOpenedView', Routes.loginView);
 
                   Navigator.pushReplacementNamed(context, Routes.loginView);
                 },

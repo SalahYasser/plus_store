@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:plus_store/core/routes/routes.dart';
 import 'package:plus_store/core/widgets/custom_loader.dart';
-import 'package:plus_store/features/on_boarding/presentation/views/on_boarding_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -14,31 +15,32 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(milliseconds: 900), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const OnBoardingView()),
-      );
-    });
-
-    // navigateNext();
+    handleStartupNavigation();
   }
 
-  // Future<void> navigateNext() async {
-  //   await Future.delayed(const Duration(milliseconds: 900));
-  //
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
-  //
-  //   if (!mounted) return;
-  //
-  //   Navigator.of(context).pushReplacement(
-  //     MaterialPageRoute(
-  //       builder:
-  //           (context) =>
-  //               hasSeenOnboarding ? const LoginView() : const OnBoardingView(),
-  //     ),
-  //   );
-  // }
+  Future<void> handleStartupNavigation() async {
+    await Future.delayed(const Duration(milliseconds: 900));
+
+    final prefs = await SharedPreferences.getInstance();
+    final bool hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
+    final bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+    final String? lastView = prefs.getString('lastOpenedView');
+
+    String nextRoute;
+
+    if (lastView == Routes.onBoardingView) {
+      nextRoute = Routes.onBoardingView;
+    } else if (isLoggedIn) {
+      nextRoute = Routes.homeView;
+    } else if (!hasSeenOnboarding) {
+      nextRoute = Routes.onBoardingView;
+    } else {
+      nextRoute = Routes.loginView;
+    }
+
+    if (!mounted) return;
+    Navigator.pushReplacementNamed(context, nextRoute);
+  }
 
   @override
   Widget build(BuildContext context) {

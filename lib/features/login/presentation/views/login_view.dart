@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plus_store/core/routes/routes.dart';
 import 'package:plus_store/features/login/presentation/cubits/login_cubit/login_cubit.dart';
 import 'package:plus_store/features/login/presentation/views/widgets/login_view_body.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -17,9 +18,13 @@ class LoginView extends StatelessWidget {
       child: BlocProvider(
         create: (context) => LoginCubit(Dio()),
         child: BlocConsumer<LoginCubit, LoginState>(
-          listener: (context, state) {
+          listener: (context, state) async {
 
             if (state is LoginSuccess) {
+
+              final prefs = await SharedPreferences.getInstance();
+              await prefs.setBool('isLoggedIn', true);
+              await prefs.setString('lastOpenedView', Routes.homeView);
 
               Navigator.pushNamed(context, Routes.homeView);
 
