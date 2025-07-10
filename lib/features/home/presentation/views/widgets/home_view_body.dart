@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plus_store/features/home/presentation/views/widgets/discover.dart';
 import 'package:plus_store/features/home/presentation/views/widgets/product_items_grid_view.dart';
-import 'package:plus_store/features/home/presentation/views/widgets/product_type.dart';
-
+import 'package:plus_store/features/home/presentation/views/widgets/product_type_list.dart';
 import '../../../data/models/product_model.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -18,7 +17,7 @@ class HomeViewBody extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             const SliverToBoxAdapter(child: Discover()),
-            const SliverToBoxAdapter(child: ProductType()),
+            const SliverToBoxAdapter(child: ProductTypeList()),
             SliverToBoxAdapter(
               child: Column(
                 children: [

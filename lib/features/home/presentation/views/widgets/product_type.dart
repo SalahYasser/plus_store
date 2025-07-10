@@ -1,115 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:plus_store/core/widgets/app_text_style.dart';
+
+import '../../../../../core/widgets/app_text_style.dart';
 
 class ProductType extends StatelessWidget {
-  const ProductType({super.key});
+  const ProductType({
+    super.key,
+    required this.label,
+    required this.width,
+    required this.isSelected,
+  });
+
+  final String label;
+  final double width;
+  final bool isSelected;
+
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 1),
-      child: Row(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width / 7,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-            decoration: ShapeDecoration(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  width: 1,
-                  strokeAlign: BorderSide.strokeAlignOutside,
-                  color: Colors.grey.shade300,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'All',
-                  style: AppTextStyle.medium16.copyWith(color: Colors.black),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(width: 10),
-          Container(
-            width: MediaQuery.of(context).size.width / 4,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-            decoration: ShapeDecoration(
-              color: const Color(0xFF191919),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [Text('T-Shirts', style: AppTextStyle.medium16)],
-            ),
-          ),
-          SizedBox(width: 10),
-          Container(
-            width: MediaQuery.of(context).size.width / 5,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-            decoration: ShapeDecoration(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  width: 1,
-                  strokeAlign: BorderSide.strokeAlignOutside,
-                  color: Colors.grey.shade300,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Jeans',
-                  style: AppTextStyle.medium16.copyWith(color: Colors.black),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(width: 10),
-          Container(
-            width: MediaQuery.of(context).size.width / 4,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-            decoration: ShapeDecoration(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  width: 1,
-                  strokeAlign: BorderSide.strokeAlignOutside,
-                  color: Colors.grey.shade300,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Shoes',
-                  style: AppTextStyle.medium16.copyWith(
-                    color: Colors.black,
+    return Container(
+      width: width,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      decoration: ShapeDecoration(
+        color: isSelected ? const Color(0xFF191919) : Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side:
+              isSelected
+                  ? BorderSide.none
+                  : BorderSide(
+                    width: 1,
+                    strokeAlign: BorderSide.strokeAlignOutside,
+                    color: Colors.grey.shade300,
                   ),
-                ),
-              ],
-            ),
+        ),
+      ),
+      child: Center(
+        child: Text(
+          label,
+          style: AppTextStyle.medium16.copyWith(
+            color: isSelected ? Colors.white : Colors.black,
           ),
-        ],
+        ),
       ),
     );
   }
