@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:plus_store/core/prefs/prefs.dart';
 import 'package:plus_store/core/routes/routes.dart';
 import 'package:plus_store/core/widgets/app_text_style.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class OnBoardingViewBody extends StatelessWidget {
   const OnBoardingViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
 
     return Stack(
@@ -51,19 +50,15 @@ class OnBoardingViewBody extends StatelessWidget {
           right: 0,
           child: Container(
             padding: const EdgeInsets.only(top: 20, left: 24, right: 24),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-            ),
+            decoration: const BoxDecoration(color: Colors.white),
             child: SizedBox(
               height: 64,
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () async {
-                  final prefs = await SharedPreferences.getInstance();
-                  await prefs.setBool('hasSeenOnboarding', true);
-                  await prefs.setString('lastOpenedView', Routes.loginView);
-
                   Navigator.pushReplacementNamed(context, Routes.loginView);
+
+                  Prefs.saveCurrentScreen(Routes.loginView);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
@@ -74,10 +69,7 @@ class OnBoardingViewBody extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Text(
-                      'Get Started',
-                      style: AppTextStyle.medium16,
-                    ),
+                    Text('Get Started', style: AppTextStyle.medium16),
                     SizedBox(width: 12),
                     Icon(Icons.arrow_forward, color: Colors.white),
                   ],
