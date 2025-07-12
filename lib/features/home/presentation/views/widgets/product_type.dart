@@ -3,22 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../../../core/widgets/app_text_style.dart';
 
 class ProductType extends StatelessWidget {
-  const ProductType({
-    super.key,
-    required this.label,
-    required this.width,
-    required this.isSelected,
-  });
+  const ProductType({super.key, required this.label, required this.isSelected});
 
   final String label;
-  final double width;
   final bool isSelected;
-
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       decoration: ShapeDecoration(
         color: isSelected ? const Color(0xFF191919) : Colors.white,

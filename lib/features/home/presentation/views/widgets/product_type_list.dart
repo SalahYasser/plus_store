@@ -32,34 +32,27 @@ class ProductTypeListState extends State<ProductTypeList> {
 
   @override
   Widget build(BuildContext context) {
-
-    final screenWidth = MediaQuery.of(context).size.width;
-
     return Padding(
       padding: const EdgeInsets.only(top: 20, left: 1),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
           children:
-          types.map((label) {
-            final bool isSelected = label == selectedLabel;
+              types.map((label) {
+                final bool isSelected = label == selectedLabel;
 
-            return Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedLabel = label;
-                  });
-                },
-                child: ProductType(
-                  label: label,
-                  width: screenWidth / 4,
-                  isSelected: isSelected,
-                ),
-              ),
-            );
-          }).toList(),
+                return Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedLabel = label;
+                      });
+                    },
+                    child: ProductType(label: label, isSelected: isSelected),
+                  ),
+                );
+              }).toList(),
         ),
       ),
     );
