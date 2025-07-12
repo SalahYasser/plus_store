@@ -19,7 +19,7 @@ class ProductItem extends StatelessWidget {
         );
       },
       child: Container(
-        width: MediaQuery.of(context).size.width / 2.2,
+        // width: MediaQuery.of(context).size.width / 2.2,
         decoration: BoxDecoration(
           color: Colors.grey.shade200,
           borderRadius: BorderRadius.circular(12),
@@ -30,8 +30,20 @@ class ProductItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               product.imageUrl.startsWith('http')
-                  ? Image.network(product.imageUrl, height: 200, fit: BoxFit.cover)
-                  : Image.asset(product.imageUrl, height: 200, fit: BoxFit.cover),
+                  ? Expanded(
+                    child: Image.network(
+                      product.imageUrl,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                  : Expanded(
+                    child: Image.asset(
+                      product.imageUrl,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
               const SizedBox(height: 16),
               Text(
                 product.title,

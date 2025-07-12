@@ -18,10 +18,10 @@ class ProductItemsGridView extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 16,
         crossAxisSpacing: 16,
-        mainAxisExtent: 370,
+        childAspectRatio: 0.55,
+        // mainAxisExtent: 400,
       ),
       itemBuilder: (context, index) {
-
         final product = products[index];
         return ProductItem(product: product);
       },

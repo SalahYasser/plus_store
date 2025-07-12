@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plus_store/features/product_details/presentation/views/widgets/size_button.dart';
+
 import '../../../../../core/widgets/app_text_style.dart';
 
 class ProductDetailsViewBody extends StatelessWidget {
@@ -20,7 +21,7 @@ class ProductDetailsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -142,6 +143,7 @@ class ProductDetailsViewBody extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 8),
         ],
       ),
     );
