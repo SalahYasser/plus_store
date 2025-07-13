@@ -29,7 +29,7 @@ class ProductDetailsViewBody extends StatelessWidget {
           imageUrl.startsWith('http')
               ? Image.network(
                 imageUrl,
-                height: 444,
+                height: 400,
                 fit: BoxFit.cover,
                 errorBuilder:
                     (_, __, ___) => Image.asset(
@@ -40,7 +40,7 @@ class ProductDetailsViewBody extends StatelessWidget {
               )
               : Image.asset(
                 imageUrl,
-                height: 444,
+                height: 400,
                 fit: BoxFit.cover,
                 errorBuilder:
                     (_, __, ___) => Image.asset(
@@ -85,8 +85,6 @@ class ProductDetailsViewBody extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             description,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
             style: AppTextStyle.medium16.copyWith(
               color: const Color(0xFF7F7F7F),
             ),
